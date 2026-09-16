@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: theme("colors.mfp-bg");
+    color: #111827;
+    font-family: theme("fontFamily.sans");
+    -webkit-font-smoothing: antialiased;
+    /* Stop iOS rubber-banding the whole page behind the fixed tab bar. */
+    overscroll-behavior-y: none;
+  }
+
+  /* The app is a phone UI; never let a double-tap zoom it. */
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    touch-action: manipulation;
+  }
+
+  /* iOS zooms any focused input under 16px. */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* Phone-width column, centred when the viewport is wider (desktop/tablet). */
+  .app-shell {
+    @apply mx-auto flex h-full w-full max-w-[480px] flex-col overflow-hidden bg-mfp-bg;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white p-4 shadow-card;
+  }
+
+  .track {
+    @apply h-2 overflow-hidden rounded-full bg-track-gray;
+  }
+
+  .pill-button {
+    @apply rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-primary active:bg-blue-100;
+  }
+
+  .scroll-area {
+    @apply flex-1 overflow-y-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@layer utilities {
+  .pt-safe {
+    padding-top: var(--safe-top);
+  }
+
+  .pb-safe {
+    padding-bottom: var(--safe-bottom);
+  }
+
+  .animate-toast-in {
+    animation: toast-in 180ms ease-out;
+  }
+
+  .animate-sheet-in {
+    animation: sheet-in 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .animate-fade-in {
+    animation: fade-in 180ms ease-out;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-toast-in,
+  .animate-sheet-in,
+  .animate-fade-in {
+    animation: none;
+  }
+}
