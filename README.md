@@ -29,8 +29,8 @@ redeploys automatically.
 
 ### GitHub Pages
 
-`.github/workflows/deploy.yml` is ready, but **Pages has to be enabled by hand
-first** — the workflow token is not allowed to create a Pages site, so the
+`.github/workflows/deploy.yml` is manual-only (Actions tab -> Run workflow),
+because **Pages has to be enabled by hand first** — the workflow token is not allowed to create a Pages site, so the
 build fails at `configure-pages` until you do:
 
 **Settings → Pages → Build and deployment → Source: GitHub Actions**

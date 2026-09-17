@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Manual only. Deployment goes through Vercel (see vercel.json); this workflow
+# is kept for the GitHub Pages route, which needs Pages switched on in the
+# repository settings before it can succeed.
 on:
-  push:
-    # Deploys from the feature branch too, so the app is reachable before merge.
-    branches: [master, claude/github-install-requirement-s2ymi2]
   workflow_dispatch:
 
 permissions:
