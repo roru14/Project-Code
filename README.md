@@ -20,14 +20,29 @@ Developer account or a hosted backend.
 
 ## Deploying
 
-### GitHub Pages (no account needed beyond GitHub)
+### Vercel (works on private repos, no settings to flip)
 
-`.github/workflows/deploy.yml` is already set up. In the repo: **Settings → Pages
-→ Source → GitHub Actions**, then push to `master` (or run the workflow manually
-from the Actions tab). The app lands at
+Import the repo at [vercel.com/new](https://vercel.com/new). `vercel.json`
+pins the framework, build command and output directory, so accept the defaults
+and deploy. You get an `https://<project>.vercel.app` URL, and every later push
+redeploys automatically.
+
+### GitHub Pages
+
+`.github/workflows/deploy.yml` is ready, but **Pages has to be enabled by hand
+first** — the workflow token is not allowed to create a Pages site, so the
+build fails at `configure-pages` until you do:
+
+**Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+Then re-run the workflow from the Actions tab. The app lands at
 `https://<user>.github.io/Project-Code/`.
 
-### Vercel / Netlify / any static host
+Note that GitHub Pages on a **private** repository needs a paid plan. If the
+Pages settings page says it is unavailable, use Vercel above, or make the repo
+public.
+
+### Any other static host
 
 Build command `npm run build`, output directory `dist`. Nothing else to
 configure — the app uses hash routing, so it needs no SPA rewrite rules.

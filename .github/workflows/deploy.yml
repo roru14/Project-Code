@@ -35,10 +35,9 @@ jobs:
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
 
+      # Requires Pages to be enabled first: Settings -> Pages -> Source ->
+      # GitHub Actions. The workflow token cannot turn it on by itself.
       - uses: actions/configure-pages@v5
-        with:
-          # Turns Pages on via the API, so there is no manual settings step.
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
